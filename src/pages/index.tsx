@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import { BlogLayout } from '../components';
+import { BlogLayout, MainSection } from '../components';
 
 const HomePage: NextPage = () => {
   return (
     <>
       <BlogLayout title={'compilers talk | blog'}>
-        <h1>BLOG</h1>
+        <MainSection />
       </BlogLayout>
     </>
   );

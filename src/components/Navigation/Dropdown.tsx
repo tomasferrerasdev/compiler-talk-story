@@ -60,7 +60,10 @@ export const Dropdown = () => {
 
       <hr className="border-dark_gray" />
 
-      <button className="flex transform items-center p-3 text-sm capitalize transition-colors duration-300">
+      <button
+        className="flex transform items-center p-3 text-sm capitalize transition-colors duration-300"
+        onClick={() => signOut()}
+      >
         <span className="mx-1">Log Out</span>
       </button>
       <hr className="border-dark_gray" />

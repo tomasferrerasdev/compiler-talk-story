@@ -1,23 +1,29 @@
 import { useState } from 'react';
 import { useSession, signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BaseButton, Dropdown, Notification } from '../';
-import { Logo } from '../Ui/Logo';
+import { useRouter } from 'next/router';
+import { Icon } from '../Icons';
+import { BaseButton, IconButton } from '..';
+import { Dropdown } from './Dropdown';
 
 export const Navbar = () => {
   const { data, status } = useSession();
-  const { pathname } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useRouter();
 
   return (
     <div className="m-auto max-w-[1400px] px-6 md:px-10">
       <div className="flex h-full w-full items-center justify-between py-4">
         <Link href={'/'}>
-          <Logo size={50} />
+          <Image
+            src={'/compilers-talk-icon.png'}
+            alt={'compilers talk logo'}
+            width={50}
+            height={50}
+            priority
+          />
         </Link>
-
         <div className="flex items-center gap-6">
           {pathname === '/new-post' ? (
             <button
@@ -35,7 +41,13 @@ export const Navbar = () => {
           )}
 
           <div className="flex items-center gap-2 ">
-            <Notification />
+            <div className="relative cursor-pointer rounded-full hover:bg-dark_gray">
+              <span className="absolute right-0 inline-flex h-3 w-3 animate-ping rounded-full bg-[#1DB954] opacity-75" />
+              <span className="absolute right-0 inline-flex h-3 w-3 rounded-full bg-[#1DB954]" />
+              <IconButton ariaLabel="notification bell">
+                <Icon name={'BellIcon'} />
+              </IconButton>
+            </div>
           </div>
           <div className="relative flex items-center justify-center">
             <button onClick={() => setIsOpen(!isOpen)}>

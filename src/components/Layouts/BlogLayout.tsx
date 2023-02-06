@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { FC } from 'react';
-import { Navbar } from '../Navbar';
+import Head from 'next/head';
+import { Navbar } from '../Navigation';
 
 type LayoutProps = {
   title: string;
