@@ -11,6 +11,9 @@
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "engines": {
     "node": ">=14.0.0",
     "yarn": ">=1.22.0",
@@ -37,6 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@faker-js/faker": "^7.6.0",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
