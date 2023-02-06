@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
+import { BlogLayout } from '../components';
 
 const HomePage: NextPage = () => {
   return (
     <>
-      <h1 className="text-red-400">hello</h1>
+      <BlogLayout title={'compilers talk | blog'}>
+        <h1>BLOG</h1>
+      </BlogLayout>
     </>
   );
 };
