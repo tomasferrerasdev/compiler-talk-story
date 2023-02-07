@@ -1,11 +1,18 @@
 import React from 'react';
-import { Article, ArticleSkeleton, BaseButton, RecommendedUsers } from '..';
+import {
+  Article,
+  ArticleSkeleton,
+  BaseButton,
+  PeopleSkeleton,
+  RecommendedUsers,
+} from '..';
 import { trpc } from '../../utils/trpc';
 import { Icon } from '../Icons';
 import { RecommendedPosts } from '../RecommendedPosts';
 
 export const MainSection = () => {
   const getPosts = trpc.post.getPosts.useQuery();
+
   const data = getPosts.isLoading ? (
     <ArticleSkeleton />
   ) : (
@@ -48,9 +55,7 @@ export const MainSection = () => {
           <div className="flex flex-col gap-y-4">
             <h3>People you might be interested</h3>
             <div className="flex flex-col space-y-4">
-              <RecommendedUsers />
-              <RecommendedUsers />
-              <RecommendedUsers />
+              <PeopleSkeleton />
             </div>
           </div>
           <div className="h-[1px] w-full bg-dark_gray"></div>

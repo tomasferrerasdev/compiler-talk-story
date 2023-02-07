@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { Icon } from '../Icons';
 import { truncateString } from '../../utils/truncateString';
 import { estimatedReadingTime } from '../../utils/estimatedReadingTime';
+import { parseDate } from '../../utils/parseDate';
 
 interface IArticle {
   post: Post;
@@ -23,7 +24,8 @@ export const Article: FC<IArticle> = ({ post }) => {
           />
           <div className="flex flex-col">
             <p className="text-sm text-light_gray">
-              Zack deRose • <span className="text-gray">Jan 24</span>
+              Zack deRose •{' '}
+              <span className="text-gray">{parseDate(post.createdAt)}</span>
             </p>
             <p className="text-xs text-gray">Founder, teacher & developer</p>
           </div>
