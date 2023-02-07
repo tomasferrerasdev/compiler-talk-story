@@ -1,15 +1,7 @@
 import React from 'react';
-import {
-  Article,
-  ArticleSkeleton,
-  BaseButton,
-  MainAside,
-  PeopleSkeleton,
-  RecommendedUsers,
-} from '..';
+import { Article, ArticleSkeleton, BaseButton } from '..';
 import { trpc } from '../../utils/trpc';
 import { Icon } from '../Icons';
-import { RecommendedPosts } from '../RecommendedPosts';
 
 export const MainSection = () => {
   const getPosts = trpc.post.getPosts.useQuery();

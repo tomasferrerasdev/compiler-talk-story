@@ -5,9 +5,15 @@ import { Icon } from '../Icons';
 import { truncateString } from '../../utils/truncateString';
 import { estimatedReadingTime } from '../../utils/estimatedReadingTime';
 import { parseDate } from '../../utils/parseDate';
+import Link from 'next/link';
 
 interface IArticle {
-  post: Post;
+  post: Post & {
+    author: {
+      name: string | null;
+      image: string | null;
+    };
+  };
 }
 
 export const Article: FC<IArticle> = ({ post }) => {
@@ -40,21 +46,26 @@ export const Article: FC<IArticle> = ({ post }) => {
       </div>
 
       <div className="flex justify-between gap-6">
-        <div className="flex w-full flex-col gap-2 sm:w-9/12">
+        <Link
+          href={`/${post.slug}`}
+          className="flex w-full flex-col gap-2 sm:w-9/12"
+        >
           <h2 className="flex flex-col text-2xl text-white">{post.title}</h2>
           <p className="break-words font-serifPro text-base text-gray">
             {truncateString(post.description, 184)}
           </p>
-        </div>
-
-        <div className="relative hidden h-full w-3/12 items-center justify-end sm:flex">
+        </Link>
+        <Link
+          href={`/${post.slug}`}
+          className="relative hidden h-full w-3/12 items-center justify-end sm:flex"
+        >
           <Image
             src={'/blogpostImage.png'}
             alt={'image'}
             width={150}
             height={150}
           />
-        </div>
+        </Link>
       </div>
       <div className="flex w-full space-x-2 text-sm sm:space-x-4">
         <div className="rounded-full bg-[#171717] py-[1px] px-2">frontend</div>

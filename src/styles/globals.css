@@ -25,6 +25,7 @@ img {
   -ms-user-select: none;
   width: auto;
   height: auto;
+  object-fit: cover;
 }
 
 /* width */

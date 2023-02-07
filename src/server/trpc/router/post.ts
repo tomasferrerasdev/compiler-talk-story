@@ -1,4 +1,5 @@
 import slugify from 'slugify';
+import { z } from 'zod';
 import { writeFormSchema } from '../../../pages/new-post';
 import { protectedProcedure, router, publicProcedure } from '../trpc';
 
@@ -43,4 +44,27 @@ export const postRouter = router({
     });
     return posts;
   }),
+
+  getPost: publicProcedure
+    .input(
+      z.object({
+        slug: z.string(),
+      })
+    )
+    .query(async ({ ctx: { prisma }, input: { slug } }) => {
+      const post = await prisma.post.findUnique({
+        where: {
+          slug,
+        },
+        include: {
+          author: {
+            select: {
+              name: true,
+              image: true,
+            },
+          },
+        },
+      });
+      return post;
+    }),
 });
