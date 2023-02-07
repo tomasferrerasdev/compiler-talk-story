@@ -15,16 +15,19 @@ export const Article: FC<IArticle> = ({ post }) => {
     <article className="flex flex-col gap-6 border-b-[1px] border-dark_gray py-10 ">
       <div className="flex w-full justify-between">
         <div className="flex items-center gap-2">
-          <Image
-            src={'/avatar.png'}
-            alt={'avatar image'}
-            width={40}
-            height={40}
-            style={{ borderRadius: '50%' }}
-          />
+          {post.author.image && (
+            <Image
+              src={post.author.image}
+              alt={`${post.author.name} avatar image`}
+              width={40}
+              height={40}
+              style={{ borderRadius: '50%' }}
+            />
+          )}
+
           <div className="flex flex-col">
             <p className="text-sm text-light_gray">
-              Zack deRose •{' '}
+              {post.author.name} •{' '}
               <span className="text-gray">{parseDate(post.createdAt)}</span>
             </p>
             <p className="text-xs text-gray">Founder, teacher & developer</p>

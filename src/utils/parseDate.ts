@@ -16,10 +16,11 @@ export const parseDate = (date: object) => {
   const dateString = date.toString();
   const parseDate = new Date(dateString);
   const month = parseDate.getUTCMonth();
+  const year = parseDate.getUTCFullYear();
 
   const day = parseDate.getUTCDate();
   const monthName = months[month];
 
-  const fullParseDate = `${monthName} ${day}`;
+  const fullParseDate = `${monthName} ${day} - ${year}`;
   return fullParseDate;
 };

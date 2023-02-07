@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
-import { BlogLayout, MainSection } from '../components';
+import { BlogLayout, Home } from '../components';
 
 const HomePage: NextPage = () => {
   return (
     <BlogLayout title={'compilers talk | blog'}>
-      <MainSection />
+      <Home />
     </BlogLayout>
   );
 };
