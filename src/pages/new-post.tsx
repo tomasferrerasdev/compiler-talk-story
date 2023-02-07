@@ -5,17 +5,19 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import TextareaAutosize from 'react-textarea-autosize';
+import { trpc } from '../utils/trpc';
+import { toast } from 'react-hot-toast';
 
 type writeForm = {
   title: string;
   description: string;
-  body: string;
+  text: string;
 };
 
-const writeFormSchema = z.object({
+export const writeFormSchema = z.object({
   title: z.string().min(3).max(200),
   description: z.string().min(3).max(600),
-  body: z.string().min(3).max(6000),
+  text: z.string().min(3).max(6000),
 });
 
 const NewPost: NextPage = () => {
@@ -23,11 +25,23 @@ const NewPost: NextPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<writeForm>({
     resolver: zodResolver(writeFormSchema),
   });
 
-  const onSubmit = (data: writeForm) => console.log(data);
+  const createPost = trpc.post.createPost.useMutation({
+    onSuccess: () => {
+      toast.success(
+        'Post published with success! Keep spreading your knowledge.'
+      );
+      reset();
+    },
+  });
+
+  const onSubmit = (data: writeForm) => {
+    createPost.mutate(data);
+  };
 
   return (
     <BlogLayout title={'compilers talk | write'}>
@@ -49,7 +63,7 @@ const NewPost: NextPage = () => {
             className="block w-full resize-none bg-transparent py-6 font-serifPro text-xl text-light_gray placeholder:text-gray focus:outline-none"
           />
           <TextareaAutosize
-            {...register('body')}
+            {...register('text')}
             placeholder="What you're thinking?..."
             className="block w-full resize-none bg-transparent py-6 font-serifPro text-base text-gray placeholder:text-gray focus:outline-none"
           />

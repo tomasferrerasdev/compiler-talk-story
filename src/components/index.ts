@@ -6,3 +6,4 @@ export * from './RecommendedPosts';
 export * from './RecommendedUsers';
 export * from './MainSection';
 export * from './Article';
+export * from './Skeletons';

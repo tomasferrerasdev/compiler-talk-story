@@ -1,9 +1,17 @@
 import React from 'react';
-import { Article, BaseButton, RecommendedUsers } from '..';
+import { Article, ArticleSkeleton, BaseButton, RecommendedUsers } from '..';
+import { trpc } from '../../utils/trpc';
 import { Icon } from '../Icons';
 import { RecommendedPosts } from '../RecommendedPosts';
 
 export const MainSection = () => {
+  const getPosts = trpc.post.getPosts.useQuery();
+  const data = getPosts.isLoading ? (
+    <ArticleSkeleton />
+  ) : (
+    getPosts.data?.map((post) => <Article post={post} key={post.id} />)
+  );
+
   return (
     <>
       <section className="grid h-full w-full grid-cols-12 gap-4">
@@ -34,13 +42,7 @@ export const MainSection = () => {
               <BaseButton label={'Following'} />
             </div>
           </div>
-          <div className=" text-gray">
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-          </div>
+          <div className=" text-gray">{data}</div>
         </main>
         <aside className="col-start-9 col-end-13 hidden h-full w-full flex-col space-y-8 border-l border-dark_gray pl-6 pt-[45px] text-gray lg:flex">
           <div className="flex flex-col gap-y-4">

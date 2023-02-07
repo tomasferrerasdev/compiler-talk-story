@@ -3,11 +3,9 @@ import { BlogLayout, MainSection } from '../components';
 
 const HomePage: NextPage = () => {
   return (
-    <>
-      <BlogLayout title={'compilers talk | blog'}>
-        <MainSection />
-      </BlogLayout>
-    </>
+    <BlogLayout title={'compilers talk | blog'}>
+      <MainSection />
+    </BlogLayout>
   );
 };
 
