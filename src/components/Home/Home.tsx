@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainAside } from '../MainAside';
-import { MainSection } from '../MainSection';
+import { MainSection } from './MainSection';
 
 export const Home = () => {
   return (

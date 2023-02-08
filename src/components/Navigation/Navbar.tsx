@@ -3,7 +3,7 @@ import { useSession, signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Icon } from '../Icons';
+import { Icon } from '../ui/Icons';
 import { BaseButton, IconButton } from '..';
 import { Dropdown } from './Dropdown';
 

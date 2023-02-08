@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import type { FieldErrors } from 'react-hook-form';
-import type { writeForm } from '../../pages/new-post';
+import type { writeForm } from '../../../pages/new-post';
 
 interface IErrorDialog {
   errors: FieldErrors<writeForm>;

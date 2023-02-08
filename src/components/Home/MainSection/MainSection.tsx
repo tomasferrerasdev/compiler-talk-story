@@ -1,7 +1,8 @@
 import React from 'react';
-import { Article, ArticleSkeleton, BaseButton } from '..';
-import { trpc } from '../../utils/trpc';
-import { Icon } from '../Icons';
+import { ArticleSkeleton, BaseButton } from '../..';
+import { trpc } from '../../../utils/trpc';
+import { Icon } from '../../ui/Icons';
+import { MainArticle } from './MainArticle';
 
 export const MainSection = () => {
   const getPosts = trpc.post.getPosts.useQuery();
@@ -9,7 +10,7 @@ export const MainSection = () => {
   const data = getPosts.isLoading ? (
     <ArticleSkeleton />
   ) : (
-    getPosts.data?.map((post) => <Article post={post} key={post.id} />)
+    getPosts.data?.map((post) => <MainArticle post={post} key={post.id} />)
   );
 
   return (

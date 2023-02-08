@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BaseButton } from '..';
+import { BaseButton } from '../..';
 
 export const RecommendedUsers = () => {
   return (

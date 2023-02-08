@@ -45,7 +45,6 @@ const CompilersLogo = (props: React.SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 );
-
 const BellIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="16"
@@ -71,7 +70,6 @@ const BellIcon = (props: React.SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-
 const SearchIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     data-testid="geist-icon"
@@ -91,7 +89,6 @@ const SearchIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M16 16l4.5 4.5"></path>
   </svg>
 );
-
 const saveIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
@@ -107,7 +104,6 @@ const saveIcon = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
-
 const saveIconFilled = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
@@ -123,7 +119,22 @@ const saveIconFilled = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
-
+const closeIcon = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      height="1.3em"
+      width="1.3em"
+      {...props}
+    >
+      <path
+        fill="#d6d6d6"
+        d="M6.225 4.811a1 1 0 00-1.414 1.414L10.586 12 4.81 17.775a1 1 0 101.414 1.414L12 13.414l5.775 5.775a1 1 0 001.414-1.414L13.414 12l5.775-5.775a1 1 0 00-1.414-1.414L12 10.586 6.225 4.81z"
+      />
+    </svg>
+  );
+};
 const LockIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +189,6 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-
 const LikePlaceholder = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     stroke="currentColor"
@@ -249,4 +259,5 @@ export const Icons = {
   LikePlaceholder,
   Comment,
   saveIconFilled,
+  closeIcon,
 };

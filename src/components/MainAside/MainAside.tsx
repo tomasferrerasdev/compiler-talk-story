@@ -1,5 +1,5 @@
-import { RecommendedPosts } from '../RecommendedPosts';
-import { PeopleSkeleton } from '../Skeletons';
+import { RecommendedPosts } from '../ui/RecommendedPosts';
+import { PeopleSkeleton } from '../ui/Skeletons';
 
 export const MainAside = () => {
   return (
