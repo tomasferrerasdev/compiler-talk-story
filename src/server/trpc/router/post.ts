@@ -11,7 +11,6 @@ export const postRouter = router({
         ctx: { prisma, session },
         input: { title, description, text },
       }) => {
-        console.log(session.user);
         await prisma.post.create({
           data: {
             title,
@@ -27,22 +26,36 @@ export const postRouter = router({
         });
       }
     ),
-  getPosts: publicProcedure.query(async ({ ctx: { prisma } }) => {
+  getPosts: publicProcedure.query(async ({ ctx: { prisma, session } }) => {
     const posts = await prisma.post.findMany({
       orderBy: {
         createdAt: 'desc',
       },
-      include: {
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        text: true,
+        description: true,
+        createdAt: true,
         author: {
           select: {
             name: true,
             image: true,
           },
         },
+        bookmarks: session?.user?.id
+          ? {
+              where: {
+                userId: session?.user?.id,
+              },
+            }
+          : false,
       },
     });
     return posts;
   }),
+
   getPost: publicProcedure
     .input(
       z.object({
@@ -101,6 +114,38 @@ export const postRouter = router({
     )
     .mutation(async ({ ctx: { prisma, session }, input: { postId } }) => {
       await prisma.like.delete({
+        where: {
+          userId_postId: {
+            postId: postId,
+            userId: session.user.id,
+          },
+        },
+      });
+    }),
+
+  bookmarkPost: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx: { prisma, session }, input: { postId } }) => {
+      await prisma.bookmark.create({
+        data: {
+          userId: session.user.id,
+          postId,
+        },
+      });
+    }),
+
+  removeBookmark: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx: { prisma, session }, input: { postId } }) => {
+      await prisma.bookmark.delete({
         where: {
           userId_postId: {
             postId: postId,

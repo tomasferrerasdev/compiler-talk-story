@@ -19,7 +19,7 @@ export const writeFormSchema = z.object({
   title: z
     .string()
     .min(3, { message: 'Title should have at least 3 characters' })
-    .max(200, { message: 'Title should not exceed 200 characters' }),
+    .max(84, { message: 'Title should not exceed 84 characters' }),
   description: z
     .string()
     .min(3, { message: 'Description should have at least 3 characters' })

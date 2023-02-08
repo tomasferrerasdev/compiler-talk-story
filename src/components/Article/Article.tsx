@@ -1,22 +1,41 @@
-import type { Post } from '@prisma/client';
+import { FC, useCallback, useState } from 'react';
 import Image from 'next/image';
-import type { FC } from 'react';
-import { Icon } from '../Icons';
+import Link from 'next/link';
+import type { Bookmark } from '@prisma/client';
+import { trpc } from '../../utils/trpc';
 import { truncateString } from '../../utils/truncateString';
 import { estimatedReadingTime } from '../../utils/estimatedReadingTime';
 import { parseDate } from '../../utils/parseDate';
-import Link from 'next/link';
+import { BookMark } from '../BookMark';
 
 interface IArticle {
-  post: Post & {
+  post: {
+    title: string;
+    text: string | null;
+    id: string;
+    createdAt: Date;
+    bookmarks: Bookmark[];
     author: {
-      name: string | null;
       image: string | null;
+      name: string | null;
     };
+    description: string;
+    slug: string;
   };
 }
 
 export const Article: FC<IArticle> = ({ post }) => {
+  const [isBookmarked, setIsBookmarked] = useState(
+    Boolean(post.bookmarks.length)
+  );
+
+  const bookmarkPost = trpc.post.bookmarkPost.useMutation({
+    onSuccess: () => setIsBookmarked((prev) => !prev),
+  });
+  const removeBookmark = trpc.post.removeBookmark.useMutation({
+    onSuccess: () => setIsBookmarked((prev) => !prev),
+  });
+
   return (
     <article className="flex flex-col gap-6 border-b-[1px] border-dark_gray py-10 ">
       <div className="flex w-full justify-between">
@@ -39,10 +58,26 @@ export const Article: FC<IArticle> = ({ post }) => {
             <p className="text-xs text-gray">Founder, teacher & developer</p>
           </div>
         </div>
-        <button className="flex items-center gap-2">
-          <Icon name={'saveIcon'} />
-          <p className="text-gray">save</p>
-        </button>
+
+        {isBookmarked ? (
+          <BookMark
+            onClick={() =>
+              removeBookmark.mutate({
+                postId: post.id,
+              })
+            }
+            isBookmarked={isBookmarked}
+          />
+        ) : (
+          <BookMark
+            onClick={() =>
+              bookmarkPost.mutate({
+                postId: post.id,
+              })
+            }
+            isBookmarked={isBookmarked}
+          />
+        )}
       </div>
 
       <div className="flex justify-between gap-6">
@@ -50,7 +85,9 @@ export const Article: FC<IArticle> = ({ post }) => {
           href={`/${post.slug}`}
           className="flex w-full flex-col gap-2 sm:w-9/12"
         >
-          <h2 className="flex flex-col text-2xl text-white">{post.title}</h2>
+          <h2 className="flex flex-col text-2xl text-white">
+            {truncateString(post.title, 84)}
+          </h2>
           <p className="break-words font-serifPro text-base text-gray">
             {truncateString(post.description, 184)}
           </p>

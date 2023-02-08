@@ -14,7 +14,7 @@ export const LikeCommentPill: FC<ILikeComment> = ({ onClick }) => {
         <div
           className={`${
             effect && 'animate-wiggle'
-          } relative cursor-pointer select-none text-[22px]`}
+          } relative cursor-pointer select-none text-[22px] hover:scale-[1.05] `}
           onClick={() => {
             onClick();
             setEffect(true);
