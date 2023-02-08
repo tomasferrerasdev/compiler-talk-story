@@ -27,7 +27,6 @@ export const postRouter = router({
         });
       }
     ),
-
   getPosts: publicProcedure.query(async ({ ctx: { prisma } }) => {
     const posts = await prisma.post.findMany({
       orderBy: {
@@ -44,27 +43,70 @@ export const postRouter = router({
     });
     return posts;
   }),
-
   getPost: publicProcedure
     .input(
       z.object({
         slug: z.string(),
       })
     )
-    .query(async ({ ctx: { prisma }, input: { slug } }) => {
+    .query(async ({ ctx: { prisma, session }, input: { slug } }) => {
       const post = await prisma.post.findUnique({
         where: {
           slug,
         },
-        include: {
+        select: {
+          id: true,
+          description: true,
+          title: true,
+          text: true,
+          likes: session?.user?.id
+            ? {
+                where: {
+                  userId: session?.user?.id,
+                },
+              }
+            : false,
           author: {
             select: {
               name: true,
               image: true,
             },
           },
+          createdAt: true,
         },
       });
       return post;
+    }),
+
+  likePost: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx: { prisma, session }, input: { postId } }) => {
+      await prisma.like.create({
+        data: {
+          userId: session.user.id,
+          postId,
+        },
+      });
+    }),
+
+  dislikePost: protectedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx: { prisma, session }, input: { postId } }) => {
+      await prisma.like.delete({
+        where: {
+          userId_postId: {
+            postId: postId,
+            userId: session.user.id,
+          },
+        },
+      });
     }),
 });

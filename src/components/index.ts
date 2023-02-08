@@ -9,4 +9,5 @@ export * from './MainAside';
 export * from './DialogCustomCards';
 export * from './Article';
 export * from './Home';
+export * from './LikeCommentPill';
 export * from './Skeletons';

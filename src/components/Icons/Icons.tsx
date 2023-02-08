@@ -162,6 +162,64 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const LikePlaceholder = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    stroke="currentColor"
+    fill="currentColor"
+    stroke-width="0"
+    version="1"
+    viewBox="0 0 48 48"
+    enable-background="new 0 0 48 48"
+    height="1em"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fill="#FFCDD2"
+      d="M34,9c-4.2,0-7.9,2.1-10,5.4C21.9,11.1,18.2,9,14,9C7.4,9,2,14.4,2,21c0,11.9,22,24,22,24s22-12,22-24 C46,14.4,40.6,9,34,9z"
+    ></path>
+  </svg>
+);
+const Like = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    stroke="currentColor"
+    fill="currentColor"
+    stroke-width="0"
+    version="1"
+    viewBox="0 0 48 48"
+    enable-background="new 0 0 48 48"
+    height="1em"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="#F44336"
+      d="M34,9c-4.2,0-7.9,2.1-10,5.4C21.9,11.1,18.2,9,14,9C7.4,9,2,14.4,2,21c0,11.9,22,24,22,24s22-12,22-24 C46,14.4,40.6,9,34,9z"
+    ></path>
+  </svg>
+);
+const Comment = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    stroke="currentColor"
+    fill="none"
+    stroke-width="1.5"
+    viewBox="0 0 24 24"
+    {...props}
+    aria-hidden="true"
+    height="1em"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"
+    ></path>
+  </svg>
+);
+
 export const Icons = {
   CompilersLogo,
   BellIcon,
@@ -170,4 +228,7 @@ export const Icons = {
   LockIcon,
   MessageIcon,
   GoogleIcon,
+  Like,
+  LikePlaceholder,
+  Comment,
 };

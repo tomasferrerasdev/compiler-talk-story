@@ -19,9 +19,14 @@ module.exports = {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg) scale(1)' },
+          '50%': { transform: 'rotate(3deg) scale(1.2)' },
+        },
       },
       animation: {
         popMenu: 'pop .2s ease-in-out',
+        wiggle: 'wiggle 200ms ease-in-out',
       },
     },
   },
