@@ -1,13 +1,29 @@
 import Image from 'next/image';
+import { FC } from 'react';
+import { parseDate } from '../../utils';
+import { truncateString } from '../../utils/truncateString';
 
-export const CommentCard = () => {
+type CommentCardType = {
+  comment: {
+    user: {
+      name: string | null;
+      image: string | null;
+    };
+    text: string;
+    createdAt: Date;
+  };
+};
+
+export const CommentCard: FC<CommentCardType> = ({
+  comment: { createdAt, text, user },
+}) => {
   return (
     <div className="h-full w-full border-b-[1px] border-dark_gray py-6">
       <div className="flex flex-col gap-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-2">
             <Image
-              src={'/avatar.png'}
+              src={`${user.image}` || '/gradient.png'}
               alt={'avatar image'}
               width={40}
               height={40}
@@ -15,18 +31,15 @@ export const CommentCard = () => {
             />
             <div className="flex flex-col">
               <p className="flex flex-col text-sm text-light_gray">
-                Martin Caballero{' '}
+                {user.name}{' '}
                 <span className="text-gray">software engineer student</span>
               </p>
             </div>
           </div>
 
-          <p className="text-sm text-gray">Mar 9</p>
+          <p className="text-sm text-gray">{parseDate(createdAt)}</p>
         </div>
-        <p className="text-sm text-light_gray">
-          Please implement useGesture for fuller functionality on mobile and
-          desktop.
-        </p>
+        <p className="text-sm text-light_gray">{text}</p>
       </div>
     </div>
   );

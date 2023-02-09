@@ -91,9 +91,11 @@ export const ArticleSection = () => {
           onClick={() => {
             getPost.data?.id && dislikePost.mutate({ postId: getPost.data.id });
           }}
+          postId={data.id}
         />
       ) : (
         <LikeCommentPill
+          postId={data.id}
           onClick={() => {
             getPost.data?.id && likePost.mutate({ postId: getPost.data.id });
           }}

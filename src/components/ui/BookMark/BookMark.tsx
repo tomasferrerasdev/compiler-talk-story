@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { trpc } from '../../../utils/trpc';
 import { Icon } from '../Icons';
 
 type BookmarkType = {

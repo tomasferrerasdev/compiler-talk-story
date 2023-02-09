@@ -1,52 +1,23 @@
-import { Fragment, useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import type { FC } from 'react';
-import { Transition, Dialog } from '@headlessui/react';
-import { Icon } from '../ui';
-import { CommentCard } from './CommentCard';
+import { CommentSidebar } from '../CommentSidebar';
 
 interface ILikeComment {
   onClick: () => void;
+  postId: string;
 }
 
-export const LikeCommentPill: FC<ILikeComment> = ({ onClick }) => {
+export const LikeCommentPill: FC<ILikeComment> = ({ onClick, postId }) => {
   const [effect, setEffect] = useState(false);
   const [showCommentSidebar, setShowCommentSidebar] = useState(false);
   return (
     <>
-      <Transition.Root show={showCommentSidebar} as={Fragment}>
-        <Dialog onClose={() => setShowCommentSidebar(false)} as="div">
-          <div className="fixed right-0 top-0">
-            <Transition.Child
-              enter="transition duration-500"
-              leave="transition duration-500"
-              enterFrom="translate-x-full"
-              enterTo="translate-x-0"
-              leaveFrom="translate-x-0"
-              leaveTo="translate-x-full"
-            >
-              <Dialog.Panel className="relative h-screen w-[450px] border-l-[1px] border-dark_gray bg-black p-6">
-                <div className="mb-4 flex w-full items-center justify-between">
-                  <p className="text-lg font-semibold text-white">
-                    Responses (1)
-                  </p>
-                  <p
-                    className="cursor-pointer font-semibold"
-                    onClick={() => setShowCommentSidebar(false)}
-                  >
-                    <Icon name={'closeIcon'} />
-                  </p>
-                </div>
-                <div className="w-11/12">
-                  <CommentCard />
-                  <CommentCard />
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition.Root>
-
-      <div className="fixed bottom-10 z-50 flex w-full items-center justify-center">
+      <CommentSidebar
+        showCommentSidebar={showCommentSidebar}
+        setShowCommentSidebar={setShowCommentSidebar}
+        postId={postId}
+      />
+      <div className="fixed bottom-10 z-0 flex w-full items-center justify-center">
         <div className="flex justify-center rounded-3xl bg-[#F0F0F0] py-2 pl-[20px] pr-[22px]">
           <div
             className={`${
