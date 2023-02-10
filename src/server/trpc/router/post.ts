@@ -6,26 +6,21 @@ import { protectedProcedure, router, publicProcedure } from '../trpc';
 export const postRouter = router({
   createPost: protectedProcedure
     .input(writeFormSchema)
-    .mutation(
-      async ({
-        ctx: { prisma, session },
-        input: { title, description, text },
-      }) => {
-        await prisma.post.create({
-          data: {
-            title,
-            description,
-            text,
-            slug: slugify(title),
-            author: {
-              connect: {
-                id: session.user.id,
-              },
+    .mutation(async ({ ctx: { prisma, session }, input: { title, description, text } }) => {
+      await prisma.post.create({
+        data: {
+          title,
+          description,
+          text,
+          slug: slugify(title),
+          author: {
+            connect: {
+              id: session.user.id,
             },
           },
-        });
-      }
-    ),
+        },
+      });
+    }),
   getPosts: publicProcedure.query(async ({ ctx: { prisma, session } }) => {
     const posts = await prisma.post.findMany({
       orderBy: {
@@ -208,4 +203,35 @@ export const postRouter = router({
       });
       return comments;
     }),
+
+  getReadingList: protectedProcedure.query(async ({ ctx: { prisma, session } }) => {
+    const allBookmarks = await prisma.bookmark.findMany({
+      where: {
+        userId: session.user.id,
+      },
+      take: 4,
+      orderBy: {
+        createdAt: 'desc',
+      },
+      select: {
+        id: true,
+        post: {
+          select: {
+            title: true,
+            description: true,
+            author: {
+              select: {
+                name: true,
+                image: true,
+              },
+            },
+            createdAt: true,
+            slug: true,
+          },
+        },
+      },
+    });
+
+    return allBookmarks;
+  }),
 });

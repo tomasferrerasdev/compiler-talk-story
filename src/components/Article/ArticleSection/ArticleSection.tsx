@@ -34,7 +34,7 @@ export const ArticleSection = () => {
 
   return (
     <>
-      <BlogLayout title={'article'}>
+      <BlogLayout title={data.title}>
         <section className="mx-auto h-full w-full max-w-[1000px] py-10 text-light_gray">
           <div className="flex flex-col gap-y-10">
             <div className="flex w-full justify-between">

@@ -1,7 +1,11 @@
+import { trpc } from '../../utils';
 import { RecommendedPosts } from '../ui/RecommendedPosts';
 import { PeopleSkeleton } from '../ui/Skeletons';
 
 export const MainAside = () => {
+  const readingList = trpc.post.getReadingList.useQuery();
+  console.log(readingList);
+
   return (
     <aside className="col-start-9 col-end-13 hidden h-full w-full flex-col space-y-8 border-l border-dark_gray pl-6 pt-[45px] text-gray lg:flex">
       <div className="flex flex-col gap-y-4">
@@ -14,9 +18,8 @@ export const MainAside = () => {
       <div className="flex flex-col gap-y-4">
         <h3>Your reading list</h3>
         <div className="flex flex-col space-y-6">
-          <RecommendedPosts />
-          <RecommendedPosts />
-          <RecommendedPosts />
+          {readingList.data &&
+            readingList.data.map(({ post }, index) => <RecommendedPosts key={index} post={post} />)}
         </div>
       </div>
     </aside>
