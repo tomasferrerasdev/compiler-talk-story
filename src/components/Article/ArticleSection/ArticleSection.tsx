@@ -54,9 +54,7 @@ export const ArticleSection = () => {
                       {data?.createdAt ? parseDate(data?.createdAt) : null}
                     </span>
                   </p>
-                  <p className="text-xs text-gray">
-                    Founder, teacher & developer
-                  </p>
+                  <p className="text-xs text-gray">Founder, teacher & developer</p>
                 </div>
               </div>
               <p>👏 {getPost.data?.likes.length}</p>
@@ -64,9 +62,7 @@ export const ArticleSection = () => {
 
             <div className="flex flex-col gap-3">
               <h1 className="text-4xl">{data?.title}</h1>
-              <p className="font-inter text-xl text-gray">
-                {data?.description}
-              </p>
+              <p className="font-inter text-xl text-gray">{data?.description}</p>
             </div>
             <div className="relative h-[300px] w-full bg-red-500">
               <Image
@@ -79,9 +75,7 @@ export const ArticleSection = () => {
               />
             </div>
             <div className="flex flex-col">
-              <p className="font-serifPro text-lg text-light_gray">
-                {data?.text}
-              </p>
+              <p className="font-serifPro text-lg text-light_gray">{data?.text}</p>
             </div>
           </div>
         </section>

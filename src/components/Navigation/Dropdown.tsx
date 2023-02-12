@@ -1,9 +1,10 @@
 import React from 'react';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export const Dropdown = () => {
+  const { data } = useSession();
   return (
     <div className="absolute right-5 top-6 z-10 mt-2 w-max origin-top-right animate-popMenu rounded-md border-[1px] border-dark_gray bg-black py-2 text-light_gray">
       <div className="absolute -top-[12px] right-[9px] z-30">
@@ -30,8 +31,8 @@ export const Dropdown = () => {
           height={40}
         />
         <div className="mx-1">
-          <h1 className="text-sm font-semibold">Tomas Ferreras</h1>
-          <p className="text-sm">hellotomasdev@gmail.com</p>
+          <h1 className="text-sm font-semibold">{data && data.user?.name}</h1>
+          <p className="text-sm">{data && data.user?.email}</p>
         </div>
       </Link>
 

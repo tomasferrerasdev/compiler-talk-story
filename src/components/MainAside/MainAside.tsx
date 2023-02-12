@@ -4,7 +4,6 @@ import { PeopleSkeleton } from '../ui/Skeletons';
 
 export const MainAside = () => {
   const readingList = trpc.post.getReadingList.useQuery();
-  console.log(readingList);
 
   return (
     <aside className="col-start-9 col-end-13 hidden h-full w-full flex-col space-y-8 border-l border-dark_gray pl-6 pt-[45px] text-gray lg:flex">

@@ -37,6 +37,7 @@ export const postRouter = router({
           select: {
             name: true,
             image: true,
+            username: true,
           },
         },
         bookmarks: session?.user?.id
@@ -78,6 +79,7 @@ export const postRouter = router({
             select: {
               name: true,
               image: true,
+              username: true,
             },
           },
           createdAt: true,

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { FC } from 'react';
 import { parseDate } from '../../utils';
-import { truncateString } from '../../utils/truncateString';
 
 type CommentCardType = {
   comment: {
@@ -14,9 +13,7 @@ type CommentCardType = {
   };
 };
 
-export const CommentCard: FC<CommentCardType> = ({
-  comment: { createdAt, text, user },
-}) => {
+export const CommentCard: FC<CommentCardType> = ({ comment: { createdAt, text, user } }) => {
   return (
     <div className="h-full w-full border-b-[1px] border-dark_gray py-6">
       <div className="flex flex-col gap-3">
@@ -31,8 +28,7 @@ export const CommentCard: FC<CommentCardType> = ({
             />
             <div className="flex flex-col">
               <p className="flex flex-col text-sm text-light_gray">
-                {user.name}{' '}
-                <span className="text-gray">software engineer student</span>
+                {user.name} <span className="text-gray">software engineer student</span>
               </p>
             </div>
           </div>

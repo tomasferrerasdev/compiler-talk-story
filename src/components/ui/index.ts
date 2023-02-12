@@ -5,3 +5,4 @@ export * from './Icons';
 export * from './RecommendedPosts';
 export * from './RecommendedUsers';
 export * from './Skeletons';
+export * from './Avatar';

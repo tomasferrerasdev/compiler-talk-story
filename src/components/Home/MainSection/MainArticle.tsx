@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from 'react';
+import { FC, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Bookmark } from '@prisma/client';
@@ -7,7 +7,6 @@ import { truncateString } from '../../../utils/truncateString';
 import { estimatedReadingTime } from '../../../utils/estimatedReadingTime';
 import { parseDate } from '../../../utils/parseDate';
 import { BookMark } from '../../ui/BookMark';
-import { useSession } from 'next-auth/react';
 
 interface IArticle {
   post: {
@@ -19,6 +18,7 @@ interface IArticle {
     author: {
       image: string | null;
       name: string | null;
+      username: string | null;
     };
     description: string;
     slug: string;
@@ -40,7 +40,10 @@ export const MainArticle: FC<IArticle> = ({ post }) => {
     <>
       <article className="flex flex-col gap-6 border-b-[1px] border-dark_gray py-10 ">
         <div className="relative flex w-full justify-between">
-          <div className="flex items-center gap-2">
+          <Link
+            className="flex cursor-pointer items-center gap-2"
+            href={`/user/${post.author.username}`}
+          >
             {post.author.image && (
               <Image
                 src={post.author.image}
@@ -57,7 +60,7 @@ export const MainArticle: FC<IArticle> = ({ post }) => {
               </p>
               <p className="text-xs text-gray">Founder, teacher & developer</p>
             </div>
-          </div>
+          </Link>
 
           {(bookmarkPost.isLoading || removeBookmark.isLoading) && (
             <div role="status" className="absolute -right-[8px] top-[9px]">

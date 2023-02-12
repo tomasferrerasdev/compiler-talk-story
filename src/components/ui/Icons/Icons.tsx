@@ -8,14 +8,7 @@ const CompilersLogo = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <g clipPath="url(#clip0_4_15)">
-      <mask
-        id="mask0_4_15"
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="50"
-        height="50"
-      >
+      <mask id="mask0_4_15" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="50">
         <path
           d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
           fill="#D9D9D9"
@@ -23,18 +16,9 @@ const CompilersLogo = (props: React.SVGProps<SVGSVGElement>) => (
       </mask>
       <g mask="url(#mask0_4_15)">
         <path d="M56.7791 0H-6.66669V1.92308H56.7791V0Z" fill="white" />
-        <path
-          d="M56.7791 5.76917H-6.66669V9.61532H56.7791V5.76917Z"
-          fill="white"
-        />
-        <path
-          d="M56.7791 13.4615H-6.66669V19.2308H56.7791V13.4615Z"
-          fill="white"
-        />
-        <path
-          d="M56.7791 23.0769H-6.66669V30.7691H56.7791V23.0769Z"
-          fill="white"
-        />
+        <path d="M56.7791 5.76917H-6.66669V9.61532H56.7791V5.76917Z" fill="white" />
+        <path d="M56.7791 13.4615H-6.66669V19.2308H56.7791V13.4615Z" fill="white" />
+        <path d="M56.7791 23.0769H-6.66669V30.7691H56.7791V23.0769Z" fill="white" />
         <path d="M56.7791 34.6153H-6.66669V50H56.7791V34.6153Z" fill="white" />
       </g>
     </g>
@@ -121,13 +105,7 @@ const saveIconFilled = (props: React.SVGProps<SVGSVGElement>) => {
 };
 const closeIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg
-      fill="none"
-      viewBox="0 0 24 24"
-      height="1.3em"
-      width="1.3em"
-      {...props}
-    >
+    <svg fill="none" viewBox="0 0 24 24" height="1.3em" width="1.3em" {...props}>
       <path
         fill="#d6d6d6"
         d="M6.225 4.811a1 1 0 00-1.414 1.414L10.586 12 4.81 17.775a1 1 0 101.414 1.414L12 13.414l5.775 5.775a1 1 0 001.414-1.414L13.414 12l5.775-5.775a1 1 0 00-1.414-1.414L12 10.586 6.225 4.81z"
@@ -247,13 +225,7 @@ const Comment = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 const SmileyIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="#7e7e7e"
-    height="1.4em"
-    width="1.4em"
-    {...props}
-  >
+  <svg viewBox="0 0 24 24" fill="#7e7e7e" height="1.4em" width="1.4em" {...props}>
     <path d="M8.456 14.494a.75.75 0 011.068.17 3.08 3.08 0 00.572.492A3.381 3.381 0 0012 15.72c.855 0 1.487-.283 1.904-.562a3.081 3.081 0 00.572-.492l.021-.026a.75.75 0 011.197.905l-.027.034c-.013.016-.03.038-.052.063-.044.05-.105.119-.184.198a4.569 4.569 0 01-.695.566A4.88 4.88 0 0112 17.22a4.88 4.88 0 01-2.736-.814 4.57 4.57 0 01-.695-.566 3.253 3.253 0 01-.236-.261c-.259-.332-.223-.824.123-1.084z" />
     <path
       fillRule="evenodd"
@@ -262,8 +234,24 @@ const SmileyIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M9 10.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zM16.25 12a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z" />
   </svg>
 );
+const EditIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    fill="none"
+    stroke="white"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+    height="1.4em"
+    width="1.4em"
+    {...props}
+  >
+    <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+  </svg>
+);
 
 export const Icons = {
+  EditIcon,
   CompilersLogo,
   BellIcon,
   SearchIcon,
